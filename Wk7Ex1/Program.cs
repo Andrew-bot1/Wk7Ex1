@@ -70,7 +70,7 @@ namespace Wk7Ex1
                 Genre = "Dystopian",
                 Price = 14.99
             };
-
+            
             Book book7 = new Book
             {
                 Title = "War and Peace ",
@@ -88,28 +88,51 @@ namespace Wk7Ex1
                          where s.Price > 12
                          select s;
 
-                    foreach (var var in cost)
-                    {
-                        Console.WriteLine(var.Title);
-                    }
+            //output all books that cost more than $12
+            foreach (var var in cost)
+            {
+                //output title for each book
+                Console.WriteLine(var.Title);
+            }
 
 
             //query for sorting books by price
-            //declare count variable
-            int count = 1;
-            Console.WriteLine("2. Books in order of price: ");
-            var price = from s in bookList
-                         select s;
-            while (count <= 7)
+            Console.WriteLine("2. Books orderd by price");
+            var result = from s in bookList
+                         orderby s.Price
+                         select (s);
+
+            //output all books in order of price
+            foreach (var var in result)
             {
-                foreach (var var in price)
-                {
-                    if 
-                    count++;
-                }
-                Console.WriteLine(
+                //output title and price for each book
+                Console.WriteLine($"{var.Title}, {var.Price}");
             }
-           
+
+            //query for sorting books by genre
+            Console.WriteLine("3. Books orderd by price");
+            var gen = from s in bookList
+                         orderby s.Genre
+                         select s;
+
+            //output all books in order of price
+            foreach (var var in gen)
+            {
+                //outpupt title and genre for each book
+                Console.WriteLine($"{var.Title}, {var.Genre}");
+            }
+
+            //query for selecting only titles and authors
+            Console.WriteLine("4. Books orderd by price");
+            var pro = from s in bookList
+                      select (s.Title, s.Author);
+
+            //output all books in order of price
+            foreach (var var in pro)
+            {
+                //output title and author for each book
+                Console.WriteLine(var);
+            }
         }
     }
 }
